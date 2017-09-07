@@ -4,7 +4,7 @@
  * Ref: https://useyourloaf.com/blog/simple-iphone-keychain-access/
  */
 
-#import "React/RCTUtils.h"
+#import "RCTUtils.h"
 #import "RNSecureKeyStore.h"
 
 @implementation RNSecureKeyStore

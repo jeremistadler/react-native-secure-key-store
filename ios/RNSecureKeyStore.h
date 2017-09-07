@@ -10,4 +10,15 @@
 
 @interface RNSecureKeyStore : NSObject <RCTBridgeModule>
 
+- (void)set:(NSString *)key value:(NSString *)value
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject
+
+- (void)get:(NSString *)key
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject
+
+- (void)remove:(NSString *)key
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject
 @end
