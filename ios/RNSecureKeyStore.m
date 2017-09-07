@@ -66,11 +66,11 @@ static NSString *serviceName = @"RNSecureKeyStoreKeyChain";
     return NO;
 }
 
-- (BOOL)updateKeychainValue:(NSString *)password forIdentifier:(NSString *)identifier {
+- (BOOL)updateKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier {
 
     NSMutableDictionary *searchDictionary = [self newSearchDictionary:identifier];
     NSMutableDictionary *updateDictionary = [[NSMutableDictionary alloc] init];
-    NSData *passwordData = [password dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *passwordData = [value dataUsingEncoding:NSUTF8StringEncoding];
     [updateDictionary setObject:passwordData forKey:(id)kSecValueData];
 
     OSStatus status = SecItemUpdate((CFDictionaryRef)searchDictionary,

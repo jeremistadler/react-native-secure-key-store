@@ -10,9 +10,9 @@
 
 @interface RNSecureKeyStore : NSObject <RCTBridgeModule>
 
-- (BOOL)createKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier
-- (BOOL)updateKeychainValue:(NSString *)password forIdentifier:(NSString *)identifier
-- (BOOL)deleteKeychainValue:(NSString *)identifier
-- (void)clearSecureKeyStore
+- (BOOL)createKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier;
+- (BOOL)updateKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier;
+- (BOOL)deleteKeychainValue:(NSString *)identifier;
+- (void)clearSecureKeyStore;
 
 @end
