@@ -27,7 +27,7 @@ $ react-native link react-native-secure-key-store
 
 ##### With cocoa pods
 
-1. Edit `Podfile` add `pod 'RNSecureKeyStore', :git => 'https://github.com/psomialbert/react-native-secure-key-store.git', :branch => 'master'`
+1. Edit `Podfile` add `pod 'RNSecureKeyStore', :git => 'https://github.com/psomialbert/react-native-secure-key-store.git', :tag => 'master'` or ex. `pod "RNSecureKeyStore", :path => "../node_modules/react-native-secure-key-store"` (depending on where your `node_modules` directory is)
 2. Run `pod install`
 
 ##### Without cocoa pods
