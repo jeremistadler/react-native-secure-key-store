@@ -30,7 +30,9 @@ static NSString *serviceName = @"RNSecureKeyStoreKeyChain";
     return searchDictionary;
 }
 
-- (NSString *)searchKeychainCopyMatching:(NSString *)identifier {
+- (NSString *)getKeychainValueForIdentifier:(NSString *)identifier {
+    [self handleAppUninstall];
+
     NSMutableDictionary *searchDictionary = [self newSearchDictionary:identifier];
 
     // Add search attributes
@@ -53,6 +55,8 @@ static NSString *serviceName = @"RNSecureKeyStoreKeyChain";
 }
 
 - (BOOL)createKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier {
+    [self handleAppUninstall];
+
     NSMutableDictionary *dictionary = [self newSearchDictionary:identifier];
 
     NSData *valueData = [value dataUsingEncoding:NSUTF8StringEncoding];
@@ -104,7 +108,7 @@ static NSString *serviceName = @"RNSecureKeyStoreKeyChain";
     }
 }
 
-- (void)handleAppUninstallation
+- (void)handleAppUninstall
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"RnSksIsAppInstalled"]) {
         [self clearSecureKeyStore];
@@ -124,7 +128,6 @@ RCT_EXPORT_METHOD(set:(NSString *)key value:(NSString *)value
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
     @try {
-        [self handleAppUninstallation];
         BOOL status = [self createKeychainValue: value forIdentifier: key];
         if (status) {
             resolve(@"key stored successfully");
@@ -149,8 +152,7 @@ RCT_EXPORT_METHOD(get:(NSString *)key
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
     @try {
-        [self handleAppUninstallation];
-        NSString *value = [self searchKeychainCopyMatching:key];
+        NSString *value = [self getKeychainValueForIdentifier:key];
         if (value == nil) {
             NSString* errorMessage = @"{\"message\":\"key does not present\"}";
             reject(@"1", errorMessage, secureKeyStoreError(errorMessage));
